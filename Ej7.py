@@ -1,5 +1,6 @@
 lista_tareas = []
-def agregar_tareas():
+
+def agregar_tareas(lista_tareas):
     tarea = {"Tarea" : "", "Fecha límite": "", "Prioridad": ""}
     for i, j in tarea.items():
         if i == "Tarea":
@@ -15,7 +16,7 @@ def agregar_tareas():
     print(tarea)
     print("Tarea agregada exitosamente")
 
-def mostrar_tareas():
+def mostrar_tareas(lista_tareas):
     if lista_tareas == []:
         print("No hay tareas en la lista.")
     else:
@@ -23,11 +24,21 @@ def mostrar_tareas():
             for tarea, valor in tareas.items():
                 print(f"{tarea} : {valor}")
 
+def completar_tarea(lista_tareas):
+    tarea = int(input("Ingrese el número de la tarea que desea marcar como completa:"))
+    tarea -= 1
+    if tarea in range(len(lista_tareas)):
+        print("Marcando la tarea como completa...")
+        lista_tareas.pop(tarea)
+    else:
+        print("Número de tarea ingresado no existente, ingrese otro número")
+
 def menu_opciones():
     print("Elija una de las opciones:")
     print("1. Agregar tareas")
     print("2. Mostrar tareas")
-    print("3. Salir del menú")
+    print("3. Marcar tarea como completa")
+    print("4. Salir del menú")
 
 def mostrar_menu():
     while True:
@@ -35,10 +46,12 @@ def mostrar_menu():
         opcion = input("Ingrese su elección:")
 
         if opcion == "1":
-            agregar_tareas()
+            agregar_tareas(lista_tareas)
         elif opcion == "2":
-            mostrar_tareas()
+            mostrar_tareas(lista_tareas)
         elif opcion == "3":
+            completar_tarea(lista_tareas)
+        elif opcion == "4":
             print("Saliendo del programa...")
             break
 
